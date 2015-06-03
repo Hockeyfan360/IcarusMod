@@ -136,6 +136,9 @@ public class IcarusMod extends BukkitPlugin
             //Enable Commands
             ICM_CommandRegistry.registerCommands();
 
+            //Disable time change
+            WeatherModule.disableTimeChange();
+
             // The All Clear
             LoggerUtils.info(plugin, "has been enabled with no problems.");
         }
