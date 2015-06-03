@@ -1,0 +1,44 @@
+package com.superiornetworks.icarus.modules;
+
+import com.superiornetworks.icarus.IcarusMod;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.weather.ThunderChangeEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
+
+public class WeatherModule extends IcarusModule implements Listener
+{
+    public WeatherModule(IcarusMod plugin) 
+    {
+        super(plugin);
+    }
+    
+    public static void disableTimeChange()
+    {
+        for (World world : Bukkit.getWorlds())
+        {
+            world.setGameRuleValue("doDaylightCycle", "false"); //Prevent time from changing naturally.
+            world.setTime(6000L); //Set the time to day.
+        }
+    }
+    
+    @EventHandler
+    public void onThunderEvent(ThunderChangeEvent event)
+    {
+        if (event.getWorld().isThundering())
+        {
+            event.setCancelled(true);
+        }
+    }
+    
+    @EventHandler
+    public void onWeatcherChangeEvent(WeatherChangeEvent event)
+    {
+        if (event.getWorld().hasStorm())
+        {
+            event.setCancelled(true);
+        }
+    }
+}
