@@ -91,4 +91,15 @@ public class PlayerListener implements Listener
         plugin.doomHammer.onPlayerUseItem(event);
     }
 
+    @EventHandler(ignoreCancelled = true)
+    public void onThunderEvent(ThunderChangeEvent event)
+    {
+        plugin.weatherModule.onThunderEvent(event);
+    }
+    
+    @EventHandler(ignoreCancelled = true)
+    public void onWeatherChangeEvent(WeatherChangeEvent event)
+    {
+        plugin.weatherModule.onWeatcherChangeEvent(event);
+    }
 }
